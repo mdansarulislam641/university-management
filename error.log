@@ -1,1 +1,6 @@
 {"level":"error","message":"server connection failed MongooseError: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","service":"user-service"}
+{"level":"error","message":"server connection failed MongooseError: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","service":"user-service"}
+{"level":"info","message":"DATABASE Connected","service":"user-service"}
+{"level":"info","message":"Application app listening on port 5000","service":"user-service"}
+{"level":"info","message":"DATABASE Connected","service":"user-service"}
+{"level":"info","message":"Application app listening on port 5000","service":"user-service"}
