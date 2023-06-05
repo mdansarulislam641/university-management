@@ -1,16 +1,68 @@
-import winston from 'winston'
+import { createLogger, format, transports } from 'winston'
+import path from 'path'
+import DailyRotateFile from 'winston-daily-rotate-file'
+const { combine, timestamp, label, printf } = format
 
-const logger = winston.createLogger({
+// custom format log
+const myFormat = printf(({ level, message, label, timestamp }) => {
+  const date = new Date(timestamp)
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const seconds = date.getSeconds()
+  return `${date.toDateString()} ${hours}:${minutes}:${seconds} [${label}] ${level}: ${message}`
+})
+
+// success logger
+const logger = createLogger({
   level: 'info',
-  format: winston.format.json(),
+  format: combine(
+    label({ label: 'university-management' }),
+    timestamp(),
+    myFormat
+  ),
   defaultMeta: { service: 'user-service' },
   transports: [
-    //
-    // - Write all logs with importance level of `error` or less to `error.log`
-    // - Write all logs with importance level of `info` or less to `combined.log`
-    //
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
+    new transports.Console(),
+    new DailyRotateFile({
+      filename: path.join(
+        process.cwd(),
+        'logs',
+        'winston',
+        'successes',
+        'UV-%DATE%-success.log'
+      ),
+      datePattern: 'YYYY-DD-MM-HH',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+    }),
   ],
 })
-export default logger
+
+// error logger
+const errorLogger = createLogger({
+  level: 'error',
+  format: combine(
+    label({ label: 'university-management' }),
+    timestamp(),
+    myFormat
+  ),
+  defaultMeta: { service: 'user-service' },
+  transports: [
+    new transports.Console(),
+    new DailyRotateFile({
+      filename: path.join(
+        process.cwd(),
+        'logs',
+        'winston',
+        'errors',
+        'UV-%DATE%-error.log'
+      ),
+      datePattern: 'YYYY-DD-MM-HH',
+      zippedArchive: true,
+      maxSize: '20m',
+      maxFiles: '14d',
+    }),
+  ],
+})
+export { logger, errorLogger }
