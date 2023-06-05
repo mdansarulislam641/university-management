@@ -1,15 +1,16 @@
 import mongoose from 'mongoose'
 import app from './app'
 import config from './config/index'
+import logger from './shared/logger'
 async function bootstrap() {
   try {
     await mongoose.connect(config.database_url as string)
-    console.log('DATABASE Connected')
+    logger.info('DATABASE Connected')
     app.listen(config.port, () => {
-      console.log(`Application app listening on port ${process.env.PORT}`)
+      logger.info(`Application app listening on port ${process.env.PORT}`)
     })
   } catch (error) {
-    console.log(`server connection failed ${error}`)
+    logger.error(`server connection failed ${error}`)
   }
 }
 
