@@ -12,13 +12,15 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/v1/users', userRoutes)
 
+// testing error
+// app.get('/',  async(req : Request , res : Response, next : NextFunction) =>{
+//     // throw new Error ("orebaba erro this")
+//     // Promise.reject(new Error("unhandle rejection") )
+//     console.log(x)
+
+//     // next("ore next error");
+// })
 // global error handler middleware
 app.use(globalErrorHandler)
-
-// testing error
-// app.get('/', (req : Request , res : Response, next : NextFunction) =>{
-//     // throw new Error ("orebaba erro")
-//     next("ore next error");
-// })
 
 export default app
