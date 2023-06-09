@@ -20,6 +20,6 @@ const createANewUserDB: RequestHandler = async (req, res, next) => {
   }
 }
 
-export default {
+export const UserController = {
   createANewUserDB,
 }
