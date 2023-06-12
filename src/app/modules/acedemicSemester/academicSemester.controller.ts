@@ -9,6 +9,7 @@ const createNewAcademicSemesterDB: RequestHandler = async (req, res, next) => {
     )
     res.status(200).json({
       success: true,
+      message: 'academic semester created successfully',
       data: semester,
     })
   } catch (error) {
