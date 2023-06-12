@@ -10,4 +10,4 @@ router.post(
   UserController.createANewUserDB
 )
 
-export default router
+export const UserRoute = router
