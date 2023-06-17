@@ -1,9 +1,15 @@
 import ApiError from '../../../errors/ApiError'
+import paginationHelper from '../../../helpers/paginationHelper'
 import IPaginationOptions from '../../../interface/paginationOptionsType'
 import { academicSemesterCodeMapper } from './academicSemester.constant'
 import { AcademicSemester } from './academicSemester.model'
-import { IAcademicSemester } from './acedemicSemester.interface'
+import {
+  IAcademicSemester,
+  IAcademicSemesterSearch,
+} from './acedemicSemester.interface'
+import { SortOrder } from 'mongoose'
 
+// semester create
 const createAcademicSemester = async (
   payload: IAcademicSemester
 ): Promise<IAcademicSemester> => {
@@ -25,11 +31,45 @@ type IGenericResponse<T> = {
 
 // get all semester service
 const getAllSemestersService = async (
+  filters: IAcademicSemesterSearch,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
-  const { page = 1, limit = 10 } = paginationOptions
-  const skip = (page - 1) * limit
-  const result = await AcademicSemester.find().sort().skip(skip).limit(limit)
+  const andConditions = [
+    {
+      $or: [
+        {
+          title: {
+            $regex: filters.searchTerm,
+            $options: 'i',
+          },
+        },
+        {
+          code: {
+            $regex: filters.searchTerm,
+            $options: 'i',
+          },
+        },
+        {
+          year: {
+            $regex: filters.searchTerm,
+            $options: 'i',
+          },
+        },
+      ],
+    },
+  ]
+
+  const { page, limit, skip, sortBy, sortOrder } =
+    paginationHelper(paginationOptions)
+  const sortConditions: { [key: string]: SortOrder } = {}
+
+  if (sortBy && sortOrder) {
+    sortConditions[sortBy] = sortOrder
+  }
+  const result = await AcademicSemester.find({ $and: andConditions })
+    .sort(sortConditions)
+    .skip(skip)
+    .limit(limit)
   const total = await AcademicSemester.countDocuments()
   return {
     meta: {
