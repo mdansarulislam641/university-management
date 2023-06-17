@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 import path from 'path'
 dotenv.config({ path: path.join(process.cwd(), '.env') })
-console.log(process.env.NODE_ENV)
 export default {
   env: process.env.NODE_ENV,
   port: process.env.PORT,

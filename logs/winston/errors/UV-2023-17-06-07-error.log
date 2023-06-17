@@ -1,0 +1,2 @@
+Sat Jun 17 2023 7:46:12 [university-management] error: Cast to number failed for value "i" (type string) at path "year" for model "AcademicSemester"
+Sat Jun 17 2023 7:56:43 [university-management] error: server connection failed Error: querySrv ECONNREFUSED _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
