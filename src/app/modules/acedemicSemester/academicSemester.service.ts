@@ -108,7 +108,16 @@ const getAllSemestersService = async (
   }
 }
 
+// single semester get service
+const getSingleSemesterService = async (
+  id: string
+): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findById(id)
+  return result
+}
+
 export const academicSemesterService = {
   createAcademicSemester,
   getAllSemestersService,
+  getSingleSemesterService,
 }
