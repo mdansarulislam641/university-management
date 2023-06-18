@@ -10,11 +10,11 @@ import { ZodError } from 'zod'
 import validateZodError from '../../errors/validateZodError'
 import handleCastError from '../../errors/handleCastError'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const globalErrorHandler: ErrorRequestHandler = (
   error,
   req: Request,
   res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction
 ) => {
   let statusCode = 500

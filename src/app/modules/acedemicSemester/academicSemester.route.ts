@@ -21,6 +21,9 @@ router.patch(
   academicSemesterController.updateSemester
 )
 
+// delete single semester
+router.delete('/:id', academicSemesterController.deleteSemester)
+
 // get all semester
 router.get('/', academicSemesterController.getAllSemesters)
 
