@@ -5,6 +5,7 @@ import ApiError from '../../errors/ApiError'
 import config from '../../config'
 import { ZodError } from 'zod'
 import validateZodError from '../../errors/validateZodError'
+import handleCastError from '../../errors/handleCastError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500
@@ -18,6 +19,11 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages = simplifiedError.errorMessages
   } else if (error instanceof ZodError) {
     const simplifiedError = validateZodError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
+  } else if (error?.name === 'CastError') {
+    const simplifiedError = handleCastError(error)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
