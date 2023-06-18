@@ -1,4 +1,7 @@
-import { ErrorRequestHandler } from 'express'
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable no-unused-expressions */
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express'
 import { IGenericErrorMessage } from '../../interface/error'
 import handleValidationError from '../../errors/handleValidationError'
 import ApiError from '../../errors/ApiError'
@@ -7,7 +10,13 @@ import { ZodError } from 'zod'
 import validateZodError from '../../errors/validateZodError'
 import handleCastError from '../../errors/handleCastError'
 
-const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const globalErrorHandler: ErrorRequestHandler = (
+  error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   let statusCode = 500
   let message = 'something went wrong'
   let errorMessages: IGenericErrorMessage[] = []
@@ -57,7 +66,6 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   })
 
   // res.status(400).json({errorBiswas : err})
-  next()
 }
 
 export default globalErrorHandler

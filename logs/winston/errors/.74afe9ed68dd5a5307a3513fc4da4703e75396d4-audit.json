@@ -159,6 +159,21 @@
             "date": 1687068625456,
             "name": "E:\\NEXT_LEVEL_2.0\\Mission-4-University-Management-Auth-Service\\logs\\winston\\errors\\UV-2023-18-06-12-error.log",
             "hash": "79c20a17b45868ed6f02e159753b4d4cc05dfa700b0ef0d9c98c0d330eb35ccf"
+        },
+        {
+            "date": 1687096640258,
+            "name": "E:\\NEXT_LEVEL_2.0\\Mission-4-University-Management-Auth-Service\\logs\\winston\\errors\\UV-2023-18-06-19-error.log",
+            "hash": "05078836d988e5b3b82cc074d89f9e34695d919aa7878f270d2e5b91d05e9a5d"
+        },
+        {
+            "date": 1687097056872,
+            "name": "E:\\NEXT_LEVEL_2.0\\Mission-4-University-Management-Auth-Service\\logs\\winston\\errors\\UV-2023-18-06-20-error.log",
+            "hash": "52777592f326d87bd5c92c86c2b73aef45df8b7fb28d567e51c9b851aaa5d119"
+        },
+        {
+            "date": 1687100449890,
+            "name": "E:\\NEXT_LEVEL_2.0\\Mission-4-University-Management-Auth-Service\\logs\\winston\\errors\\UV-2023-18-06-21-error.log",
+            "hash": "14c50bf09990d1a73d5317891e2ec5eee510eabed280b15747dc0c9134636713"
         }
     ],
     "hashType": "sha256"
