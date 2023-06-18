@@ -31,16 +31,28 @@ type IGenericResponse<T> = {
 
 // get all semester service
 const getAllSemestersService = async (
-  filters: IAcademicSemesterSearch,
+  { searchTerm, ...filterFields }: IAcademicSemesterSearch,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
   const andConditions = []
+
   const searchTermFields = ['title', 'code', 'year']
-  if (filters) {
+  if (searchTerm) {
     andConditions.push({
       $or: searchTermFields.map(field => ({
         [field]: {
-          $regex: filters.searchTerm,
+          $regex: searchTerm,
+          $options: 'i',
+        },
+      })),
+    })
+  }
+
+  if (Object.keys(filterFields).length) {
+    andConditions.push({
+      $and: Object.entries(filterFields).map(([field, value]) => ({
+        [field]: {
+          $regex: value,
           $options: 'i',
         },
       })),
