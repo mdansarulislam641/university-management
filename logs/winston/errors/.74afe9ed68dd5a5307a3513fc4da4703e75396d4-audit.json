@@ -144,6 +144,11 @@
             "date": 1687058851587,
             "name": "E:\\NEXT_LEVEL_2.0\\Mission-4-University-Management-Auth-Service\\logs\\winston\\errors\\UV-2023-18-06-09-error.log",
             "hash": "316779d35801c0fc8279a90b9aff3ced8426a017a10cfe5b257b24ad278b6970"
+        },
+        {
+            "date": 1687060928616,
+            "name": "E:\\NEXT_LEVEL_2.0\\Mission-4-University-Management-Auth-Service\\logs\\winston\\errors\\UV-2023-18-06-10-error.log",
+            "hash": "d4c9ca1332de279bc97f42d71921b123e295aa2a899ec51148a7dabd76439eb1"
         }
     ],
     "hashType": "sha256"
