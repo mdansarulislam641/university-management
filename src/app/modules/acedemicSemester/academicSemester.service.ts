@@ -34,30 +34,43 @@ const getAllSemestersService = async (
   filters: IAcademicSemesterSearch,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
-  const andConditions = [
-    {
-      $or: [
-        {
-          title: {
-            $regex: filters.searchTerm,
-            $options: 'i',
-          },
+  const andConditions = []
+  const searchTermFields = ['title', 'code', 'year']
+  if (filters) {
+    andConditions.push({
+      $or: searchTermFields.map(field => ({
+        [field]: {
+          $regex: filters.searchTerm,
+          $options: 'i',
         },
-        {
-          code: {
-            $regex: filters.searchTerm,
-            $options: 'i',
-          },
-        },
-        {
-          year: {
-            $regex: filters.searchTerm,
-            $options: 'i',
-          },
-        },
-      ],
-    },
-  ]
+      })),
+    })
+  }
+
+  // const andConditions = [
+  //   {
+  //     $or: [
+  //       {
+  //         title: {
+  //           $regex: filters.searchTerm,
+  //           $options: 'i',
+  //         },
+  //       },
+  //       {
+  //         code: {
+  //           $regex: filters.searchTerm,
+  //           $options: 'i',
+  //         },
+  //       },
+  //       {
+  //         year: {
+  //           $regex: filters.searchTerm,
+  //           $options: 'i',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // ]
 
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelper(paginationOptions)
