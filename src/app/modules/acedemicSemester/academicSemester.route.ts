@@ -12,6 +12,8 @@ router.post(
   academicSemesterController.createNewAcademicSemesterDB
 )
 
+// get single semester
+router.get('/:id', academicSemesterController.getSingleSemester)
 // get all semester
 router.get('/', academicSemesterController.getAllSemesters)
 
