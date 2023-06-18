@@ -15,7 +15,11 @@ router.post(
 // get single semester
 router.get('/:id', academicSemesterController.getSingleSemester)
 // update single semester
-router.patch('/:id', academicSemesterController.updateSemester)
+router.patch(
+  '/:id',
+  validateRequest(AcademicSemesterValidation.updateAcademicSemesterZodSchema),
+  academicSemesterController.updateSemester
+)
 
 // get all semester
 router.get('/', academicSemesterController.getAllSemesters)
