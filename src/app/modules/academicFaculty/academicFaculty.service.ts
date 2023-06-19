@@ -83,8 +83,33 @@ const getSingleFaculty = async (
   return result
 }
 
-export const academicFacultyService = {
+// update single faculty
+const updateFaculty = async (
+  id: string,
+  data: Partial<IAcademicFaculty>
+): Promise<IAcademicFaculty | null> => {
+  const result = await AcademicSemesterModel.findOneAndUpdate(
+    { _id: id },
+    data,
+    {
+      new: true,
+    }
+  )
+  return result
+}
+
+// delete single faculty
+const deleteSingleFaculty = async (
+  id: string
+): Promise<IAcademicFaculty | null> => {
+  const result = await AcademicSemesterModel.findOneAndDelete({ _id: id })
+  return result
+}
+
+export default {
   createFaculty,
   getAllFaculties,
   getSingleFaculty,
+  updateFaculty,
+  deleteSingleFaculty,
 }

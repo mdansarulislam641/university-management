@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import catchAsync from '../../../shared/catchAsync'
 import sendResponse from '../../../shared/sendResponse'
 import { IAcademicFaculty } from './academicFaculty.interface'
-import { academicFacultyService } from './academicFaculty.service'
+import academicFacultyService from './academicFaculty.service'
 import pick from '../../../shared/pick'
 
 // create faculty
@@ -52,8 +52,35 @@ const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+// update single faculty
+const updateFaculty = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id
+  const updatedData = req.body
+  const result = await academicFacultyService.updateFaculty(id, updatedData)
+  sendResponse<IAcademicFaculty>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'faculty updated successfully',
+    data: result,
+  })
+})
+
+// delete single faculty
+const deleteSingleFaculty = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id
+  const result = await academicFacultyService.deleteSingleFaculty(id)
+  sendResponse<IAcademicFaculty | null>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Faculty deleted Successfully',
+    data: result,
+  })
+})
+
 export default {
   createFaculty,
   getAllFaculties,
   getSingleFaculty,
+  updateFaculty,
+  deleteSingleFaculty,
 }
