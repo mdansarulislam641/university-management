@@ -1,3 +1,7 @@
 export type IAcademicFaculty = {
   title: string
 }
+
+export type IFilterableFields = {
+  searchTerm?: string
+}

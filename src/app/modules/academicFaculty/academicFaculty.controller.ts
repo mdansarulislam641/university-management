@@ -19,6 +19,7 @@ const createFaculty = catchAsync(async (req: Request, res: Response) => {
 
 // get all getAllFaculties
 const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, ['searchTerm', 'title', 'man', 'woman'])
   const paginationOptions = pick(req.query, [
     'page',
     'limit',
@@ -26,12 +27,16 @@ const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
     'sortOrder',
   ])
 
-  const result = await academicFacultyService.getAllFaculties(paginationOptions)
+  const result = await academicFacultyService.getAllFaculties(
+    filters,
+    paginationOptions
+  )
   sendResponse<IAcademicFaculty[]>(res, {
     statusCode: 200,
     success: true,
     message: 'Faculties Retrieve successfully',
-    data: result,
+    meta: result.meta,
+    data: result.data,
   })
 })
 
