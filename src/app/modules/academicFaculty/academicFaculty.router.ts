@@ -1,5 +1,5 @@
 import express from 'express'
-import { academicFacultyController } from './academicFaculty.controller'
+import academicFacultyController from './academicFaculty.controller'
 import validateRequest from '../../middlewares/validateRequest'
 import { academicFacultyValidation } from './academicFaculty.validate'
 
@@ -10,6 +10,9 @@ router.post(
   validateRequest(academicFacultyValidation.createAcademicFacultyZodSchema),
   academicFacultyController.createFaculty
 )
+
+// get single faculty
+router.get('/:id', academicFacultyController.getSingleFaculty)
 
 // get all faculties
 router.get('/', academicFacultyController.getAllFaculties)

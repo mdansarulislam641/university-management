@@ -40,7 +40,20 @@ const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-export const academicFacultyController = {
+// get single faculty
+const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id
+  const result = await academicFacultyService.getSingleFaculty(id)
+  sendResponse<IAcademicFaculty>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Single Faculty Retrieve successfully',
+    data: result,
+  })
+})
+
+export default {
   createFaculty,
   getAllFaculties,
+  getSingleFaculty,
 }
