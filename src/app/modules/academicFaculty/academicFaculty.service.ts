@@ -75,7 +75,16 @@ const getAllFaculties = async (
   }
 }
 
+// get single faculty
+const getSingleFaculty = async (
+  id: string
+): Promise<IAcademicFaculty | null> => {
+  const result = await AcademicSemesterModel.findOne({ _id: id })
+  return result
+}
+
 export const academicFacultyService = {
   createFaculty,
   getAllFaculties,
+  getSingleFaculty,
 }

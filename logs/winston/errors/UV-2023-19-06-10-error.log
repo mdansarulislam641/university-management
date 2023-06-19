@@ -1,0 +1,2 @@
+Mon Jun 19 2023 10:33:25 [university-management] error: server connection failed Error: querySrv ECONNREFUSED _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
+Mon Jun 19 2023 10:33:45 [university-management] error: server connection failed Error: querySrv ECONNREFUSED _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
