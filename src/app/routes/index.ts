@@ -2,6 +2,7 @@ import express from 'express'
 import { UserRoute } from '../modules/users/users.route'
 import { AcademicSemesterRoutes } from '../modules/acedemicSemester/academicSemester.route'
 import { AcademicFacultyRoutes } from '../modules/academicFaculty/academicFaculty.router'
+import { AcademicDepartmentRoutes } from '../modules/academicDepertment/academicDepartment.route'
 const router = express.Router()
 
 const moduleRoutes = [
@@ -17,11 +18,12 @@ const moduleRoutes = [
     path: '/academic-faculty',
     route: AcademicFacultyRoutes,
   },
+  {
+    path: '/academic-department',
+    route: AcademicDepartmentRoutes,
+  },
 ]
 
 moduleRoutes.forEach(route => router.use(route.path, route.route))
-
-// router.use('/users', UserRoute)
-// router.use('/academic-semesters', AcademicSemesterRoutes)
 
 export default router
