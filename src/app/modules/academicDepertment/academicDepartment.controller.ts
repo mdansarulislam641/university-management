@@ -16,6 +16,20 @@ const createDepartment = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+// get all academic Department
+const getAllAcademicDepartment = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await academicDepartmentService.getAllAcademicDepartment()
+    sendResponse<IAcademicDepartment[]>(res, {
+      statusCode: 200,
+      success: true,
+      message: 'Successfully get all academic department',
+      data: result,
+    })
+  }
+)
+
 export const academicDepartmentController = {
   createDepartment,
+  getAllAcademicDepartment,
 }
