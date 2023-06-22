@@ -1,0 +1,4 @@
+Tue Jun 20 2023 10:4:3 [university-management] error: server connection failed Error: querySrv EREFUSED _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
+Tue Jun 20 2023 10:4:5 [university-management] error: server connection failed Error: querySrv EREFUSED _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
+Tue Jun 20 2023 10:4:8 [university-management] error: server connection failed Error: querySrv EREFUSED _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
+Tue Jun 20 2023 10:6:28 [university-management] error: server connection failed Error: querySrv ETIMEOUT _mongodb._tcp.nexrjs.lpjxsqw.mongodb.net
