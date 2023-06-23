@@ -15,7 +15,15 @@ router.post(
 
 // get single department
 router.get('/:id', academicDepartmentController.getSingleDepartment)
+// update single department
+router.patch(
+  '/:id',
+  validateRequest(academicDepartmentZodSchema.updateDepartmentValidation),
+  academicDepartmentController.updateSingleDepartment
+)
 
+// delete single department
+router.delete('/:id', academicDepartmentController.deleteDepartment)
 // get all academic Department
 router.get('/', academicDepartmentController.getAllAcademicDepartment)
 
