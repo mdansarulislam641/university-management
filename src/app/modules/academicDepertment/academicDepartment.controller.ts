@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import catchAsync from '../../../shared/catchAsync'
 import sendResponse from '../../../shared/sendResponse'
 import { IAcademicDepartment } from './academicDepartment.interface'
-import { academicDepartmentService } from './academicDepartment.service'
+import academicDepartmentService from './academicDepartment.service'
 import pick from '../../../shared/pick'
 import { paginationField } from '../../../constance/paginationField'
 
@@ -37,7 +37,20 @@ const getAllAcademicDepartment = catchAsync(
   }
 )
 
+// get single department
+const getSingleDepartment = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id
+  const result = await academicDepartmentService.getSingleDepartment(id)
+  sendResponse<IAcademicDepartment>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Get Department Successfully',
+    data: result,
+  })
+})
+
 export const academicDepartmentController = {
   createDepartment,
   getAllAcademicDepartment,
+  getSingleDepartment,
 }
