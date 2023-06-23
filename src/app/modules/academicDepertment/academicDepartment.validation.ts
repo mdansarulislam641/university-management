@@ -10,6 +10,15 @@ const createAcademicDepartmentZodSchema = z.object({
   }),
 })
 
+// update department validation
+const updateDepartmentValidation = z.object({
+  body: z.object({
+    title: z.string().optional(),
+    academicFaculty: z.string().optional(),
+  }),
+})
+
 export const academicDepartmentZodSchema = {
   createAcademicDepartmentZodSchema,
+  updateDepartmentValidation,
 }

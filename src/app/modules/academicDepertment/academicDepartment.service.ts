@@ -93,8 +93,30 @@ const getSingleDepartment = async (
   return result
 }
 
+// update single department
+const updateSingleDepartment = async (
+  id: string,
+  payloadData: Partial<IAcademicDepartment>
+): Promise<IAcademicDepartment | null> => {
+  const result = await AcademicDepartmentModel.findOneAndUpdate(
+    { _id: id },
+    payloadData,
+    {
+      new: true,
+    }
+  )
+  return result
+}
+
+const deleteDepartment = async (id: string) => {
+  const name = id
+  return name
+}
+
 export default {
   createDepartment,
   getAllAcademicDepartment,
   getSingleDepartment,
+  updateSingleDepartment,
+  deleteDepartment,
 }
