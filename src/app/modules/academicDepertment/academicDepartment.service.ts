@@ -109,8 +109,8 @@ const updateSingleDepartment = async (
 }
 
 const deleteDepartment = async (id: string) => {
-  const name = id
-  return name
+  const result = await AcademicDepartmentModel.findOneAndDelete({ _id: id })
+  return result
 }
 
 export default {
