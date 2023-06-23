@@ -83,7 +83,18 @@ const getAllAcademicDepartment = async (
   }
 }
 
-export const academicDepartmentService = {
+// get single department
+const getSingleDepartment = async (
+  id: string
+): Promise<IAcademicDepartment | null> => {
+  const result = await AcademicDepartmentModel.findOne({ _id: id }).populate(
+    'academicFaculty'
+  )
+  return result
+}
+
+export default {
   createDepartment,
   getAllAcademicDepartment,
+  getSingleDepartment,
 }
