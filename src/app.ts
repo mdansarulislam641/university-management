@@ -2,6 +2,7 @@ import express, { Application } from 'express'
 import cors from 'cors'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
 import router from './app/routes'
+import { generateFacultyId } from './app/modules/users/users.utils'
 
 const app: Application = express()
 
@@ -23,5 +24,11 @@ app.use('/api/v1', router)
 // })
 // global error handler middleware
 app.use(globalErrorHandler)
+
+const testId = async () => {
+  const id = await generateFacultyId()
+  console.log(id)
+}
+testId()
 
 export default app
