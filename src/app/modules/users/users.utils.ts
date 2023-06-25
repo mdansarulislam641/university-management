@@ -2,10 +2,15 @@ import { IAcademicSemester } from '../acedemicSemester/acedemicSemester.interfac
 import { User } from './users.model'
 
 const findLastStudentId = async () => {
-  const lastUser = await User.findOne({}, { id: 1, _id: 0 })
+  const lastUser = await User.findOne(
+    {
+      role: 'student',
+    },
+    { id: 1, _id: 0 }
+  )
     .sort({ createdAt: -1 })
     .lean()
-  return lastUser?.id
+  return lastUser?.id ? lastUser.id.substring(4) : undefined
 }
 
 export const generateStudentId = async (userInfo: IAcademicSemester) => {
@@ -20,18 +25,21 @@ export const generateStudentId = async (userInfo: IAcademicSemester) => {
 
 // get faculty
 const findLastFacultyId = async () => {
-  const lastFaculty = await User.findOne({}, { id: 1, _id: 0 })
+  const lastFaculty = await User.findOne(
+    {
+      role: 'faculty',
+    },
+    { id: 1, _id: 0 }
+  )
     .sort({ createdAt: -1 })
     .lean()
-  return lastFaculty?.id
+  return lastFaculty?.id ? lastFaculty.id.substring(2) : undefined
 }
 // faculty id generate
 export const generateFacultyId = async () => {
   const currentId =
     (await findLastFacultyId()) || (0).toString().padStart(5, '0')
-  let incrementalId = parseInt(currentId + 1)
-    .toString()
-    .padStart(5, '0')
+  let incrementalId = (parseInt(currentId) + 1).toString().padStart(5, '0')
   incrementalId = `F-${incrementalId}`
   return incrementalId
 }
